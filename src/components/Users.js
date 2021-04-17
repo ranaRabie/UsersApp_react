@@ -32,10 +32,13 @@ class Welcome extends Component{
     }
     calculateFollowersNumber(){
         let followers = this.state.users.map((user) => user.following).flat();
-        for(let i = 0; i < this.state.users.length; i++){
+        let users = [...this.state.users];
+        for(let i = 0; i < users.length; i++){
           let followersNum = this.getOccurrence(followers, this.state.users[i].id);
-          this.state.users[i].followersCounetr = followersNum;
-          this.setState({users: this.state.users});
+          let user = {...users[i]};
+          user.followersCounetr = followersNum;
+          users[i] = user;
+          this.setState({users: users});
         }
     }
     sortUsers(){
@@ -106,10 +109,10 @@ class Welcome extends Component{
               {this.state.users.map((user, usrIndex) => {
                 return <li key={usrIndex} className="user-item">
                     <h2>{user.name}</h2>
-                    <a onClick={() => this.deleteUser(user.id)} >delete</a>
+                    <button onClick={() => this.deleteUser(user.id)}>delete</button>
                     <p>Followers Number: {user.followersCounetr}</p>
                     {user.interests
-                     ? <div className="interests-wrapper"><a onClick={() => this.viewInterests(usrIndex)}>view interests</a><div  className={"interests-list " + (this.state.viewInterestsList.includes(usrIndex) ? 'show' : 'hide')}><span className="interest-item" >{user.interests}</span><a onClick={() => this.deleteInterests(user.id, usrIndex)}>delete</a></div></div>    
+                     ? <div className="interests-wrapper"><button onClick={() => this.viewInterests(usrIndex)}>view interests</button><div  className={"interests-list " + (this.state.viewInterestsList.includes(usrIndex) ? 'show' : 'hide')}><span className="interest-item" >{user.interests}</span><button onClick={() => this.deleteInterests(user.id, usrIndex)}>delete</button></div></div>    
                      : ''
                     }
                 </li>
