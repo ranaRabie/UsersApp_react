@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,15 +35,27 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
-
+*{margin: 0;padding: 0;}
+body{padding: 0 1rem;}
+h1{text-align: center;margin: 2rem 0;}
 a{cursor: pointer;text-decoration: underline;}
 a:hover{text-decoration: none;}
 ul{list-style-type: none;}
-.user-item{background-color: #eee;padding: .5rem 1rem;border-radius: 10px;margin-bottom: .4rem;}
+.user-item{background-color: #eee;padding: 1rem 2rem;border-radius: 10px;margin-bottom: .4rem;}
 .user-item h2{padding: 0;margin: 0 0 .7rem;}
 .interests-list{display: none;}
 .interests-list.show{display: block;}
-.interest-item{display: inline-block;background-color: rgba(0, 0, 0, 0.15);padding: .1rem .5rem;border-radius: 3px;margin: 10px 5px 0;}
+.interest-item{display: inline-block;background-color: rgba(0, 0, 0, 0.15);padding: .1rem .5rem;border-radius: 3px;margin: 10px 5px 0 0;}
 .user-item.no-user{background-color: #ffeaea;text-transform: capitalize;}
+.user-item, .user-footer{display: flex;justify-content: space-between;}
+.user-footer{align-items: flex-start;}
+.btn{color: #fff;outline: none;border: 0;padding: .3rem .7rem;border-radius: 3px;text-transform: capitalize;cursor: pointer;}
+.link{outline: none;border: 0;text-decoration: underline;cursor: pointer;}
+.link:hover{text-decoration: none;}
+.dark-btn{background: #000;margin-right: .2rem;}
+.dark-btn:hover{background: #222;}
+.danger-btn{background: #b10505;}
+.danger-btn:hover{background: #9a0404;}
+.danger-link{color: red;}
