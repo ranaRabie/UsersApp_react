@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+
+a{cursor: pointer;text-decoration: underline;}
+a:hover{text-decoration: none;}
+ul{list-style-type: none;}
+.user-item{background-color: #eee;padding: .5rem 1rem;border-radius: 10px;margin-bottom: .4rem;}
+.user-item h2{padding: 0;margin: 0 0 .7rem;}
+.interests-list{display: none;}
+.interests-list.show{display: block;}
+.interest-item{display: inline-block;background-color: rgba(0, 0, 0, 0.15);padding: .1rem .5rem;border-radius: 3px;margin: 10px 5px 0;}
+.user-item.no-user{background-color: #ffeaea;text-transform: capitalize;}
