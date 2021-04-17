@@ -96,9 +96,11 @@ class Welcome extends Component{
             let index = this.state.users.indexOf(this.state.users[i]);
             this.state.users.splice(index, 1);
             this.setState({users: this.state.users});
-            let idIndex = list.indexOf(userId);
-            list.splice(idIndex, 1);
-            this.setState({viewInterestsList: list});
+            if(list.includes(userId)){
+              let idIndex = list.indexOf(userId);
+              list.splice(idIndex, 1);
+              this.setState({viewInterestsList: list});
+            }
           }
         }
       }
@@ -110,18 +112,25 @@ class Welcome extends Component{
             <ul>
               {this.state.users.length > 0 ? '' : <li className="user-item no-user">no users found</li>}
               {this.state.users.map((user, usrIndex) => {
-                return <li key={usrIndex} className="user-item">
+                return <li key={usrIndex} id={user.id} className="user-item">
                     <div className="user-head">
                       <h2>{user.name}</h2>
                       <p>Followers: {user.followersCounetr}</p>
                       {user.interests
-                      ? <div className="interests-wrapper"><div  className={"interests-list " + (this.state.viewInterestsList.includes(usrIndex) ? 'show' : 'hide')}><span className="interest-item" >{user.interests}</span><button onClick={() => this.deleteInterests(user.id, usrIndex)} className="link danger-link">Delete Interests</button></div></div>    
+                      ? <div className="interests-wrapper">
+                        <div  className={"interests-list " + (this.state.viewInterestsList.includes(user.id) ? 'show' : 'hide')}>
+                          {user.interests.map((interestItem, interestIndex) => {return <span className="interest-item" key={interestIndex}>{interestItem}</span>})}
+                          <button onClick={() => this.deleteInterests(user.id, usrIndex)} className="link danger-link">Delete Interests</button>
+                        </div>
+                        </div>    
                       : ''
                       }
                     </div>
                     <div className="user-footer">
                       {user.interests
-                      ? <button onClick={() => this.viewInterests(usrIndex)} className="btn dark-btn">view interests</button>    
+                      ? <button onClick={() => this.viewInterests(user.id)} className="btn dark-btn">
+                        {this.state.viewInterestsList.includes(user.id) ? 'hide interests' : 'view interests'}
+                        </button>    
                       : ''
                       }
                       <button onClick={() => this.deleteUser(user.id)} className="btn danger-btn">delete user</button>
